@@ -6,7 +6,7 @@ Google Drive Utility provides an easy way to use Google Drive from command line,
 ## Download and installation
 You can download it with Pip:
 ```
-pip install DriveUtil
+pip install DriveUtility
 ```
 
 # Usage
