@@ -20,14 +20,16 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
 	name="DriveUtility",
-	version="0.0.2",
+	version="0.0.5",
 	author="Pedro Gabaldon Julia",
 	author_email="petergj@protonmail.com",
 	description="Google Drive tool",
 	long_description=long_description,
     long_description_content_type="text/markdown",
 	url="https://github.com/PeterGabaldon/DriveUtility",
-	scripts=["bin/DriveUtil"],
+	scripts=["bin/DriveUtil.py"],
+	license="MIT",
+	include_package_data=True,
 	install_requires=requires,
 	packages=setuptools.find_packages(),
 	classifiers=(
