@@ -1,2 +1,0 @@
-# DriveUtility
-Google Drive tool
