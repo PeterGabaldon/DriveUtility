@@ -55,7 +55,7 @@ RemoveStar|||||True if successful. False if it fails
 
 # Windows Context Menu
 ## Adding it
-The provided python scripts, `addContext.py` and `removeContext.py` add new optoins to the Context Menu, making DriveUtil more flexible to use. These two scripts must be run with admin rights. You can use:
+The provided python scripts, `addContext.py` and `removeContext.py` add new options to the Context Menu, making DriveUtil more flexible to use. These two scripts must be run with admin rights. You can use:
 ```
 python -m DriveUtil.addContext
 ```
