@@ -1,2 +1,2 @@
 include client_secret.json
-recursive-include cmd
+recursive-include cmd *
