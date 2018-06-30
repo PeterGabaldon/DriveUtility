@@ -11,6 +11,7 @@
 #
 
 import setuptools
+import platform
 
 requires=["oauth2client", "httplib2", "google-api-python-client"]
 
@@ -26,7 +27,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
 	name="DriveUtility",
-	version="0.0.8",
+	version="0.0.9",
 	author="Pedro Gabaldon Julia",
 	author_email="petergj@protonmail.com",
 	description="Google Drive tool",
