@@ -55,9 +55,10 @@ Copy|Id=None||||True if successful. False if it fails
 SearchByName|||||           
 Delete|Id=None||||True if successful. False if it fails
 List |FolderId=None|OnlyFolder=False|SelectId=False|query=None |Folder/file Id if SelectId=True. None otherwise
-Move|||||True if successful. False if it fails
-AddStar|||||True if successful. False if it fails
+Move|moveId|moveToId|||True if successful. False if it fails
+AddStar|Id||||True if successful. False if it fails
 RemoveStar|||||True if successful. False if it fails
+getShareLink|||||Share link. False if it fails
 
 # Windows Context Menu
 ## Adding it
@@ -74,5 +75,10 @@ from an elevetad Windows command prompt.
 ![Context Menu](https://media.giphy.com/media/4K1N65N9Wmx6WrdQ4f/giphy.gif)
 
 ## Examples
-`clean_bin.py` and `example.py` are two sample scripts. The first one will removed all files in the Drive Bin and the second will upload the contents of Test folder.
+`example.py` is a sample script. It will upload the contents of Test folder.
+
+# Contributing
+All pull requests and issues are welcome. I'm very thankful for any type of help, improvement or tests.
+
+
 
