@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #
@@ -45,7 +45,7 @@ except ImportError:
 SCOPES = 'https://www.googleapis.com/auth/drive'
 SECRET_FILE = os.path.dirname(__file__)
 SECRET_FILE = os.path.join(SECRET_FILE, 'client_secret.json')
-APP_NAME = 'Windows Drive Utility'
+APP_NAME = 'Google Drive Utility'
 DriveFolderMime = 'application/vnd.google-apps.folder'
 
 #Return drive api object
@@ -324,6 +324,9 @@ class mainDrive(object):
 					except HttpError as err:
 						if err.resp.status == 403:
 							print 'You do not have permissions'
+							if err._get_reason() == 'Only files with binary content can be downloaded. Use Export with Google Docs files.':
+								print 'That file can not be download. View it in: ' + str(self.drive.files().get(fileId=self.Id, fields='webViewLink').execute().get('webViewLink'))
+								return True
 							return False
 						else:
 							raise
@@ -352,12 +355,18 @@ class mainDrive(object):
 
 		if self.Id:
 			try:
-				response = self.drive.files().copy(fileId=self.Id, body='').execute()
+				response = self.drive.files().copy(fileId=self.Id, body={'name' : 'Copy of - ' + self.drive.files().get(fileId=self.Id, fields='name').execute().get('name')}).execute()
 				print 'Copied'
 				return True
 			except HttpError as err:
 				if err.resp.status == 403:
 					print 'You do not have permissions'
+					if err._get_reason() == 'This file cannot be copied by the user.':
+						print 'You cannot copy that file/folder'
+						return False
+					return False
+				elif err.resp.status == 400:
+					print 'You cannot copy that file/folder'
 					return False
 				else:
 					raise

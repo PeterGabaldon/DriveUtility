@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #
@@ -15,6 +15,7 @@ if __name__ == '__main__':
 		import argparse
 		import platform
 		import banner
+		import clean_bin
 		from drive import *
 	except ImportError:
 		raise ImportError('Error importing')
@@ -27,12 +28,18 @@ if __name__ == '__main__':
 	parse = argparse.ArgumentParser(description='Google Drive Utility')	
 	parse.add_argument('-u, --upload', dest='upload', type=str, nargs='+', help='Path of folder or file to upload.', metavar='Path(s)')
 	parse.add_argument('-s, --specificf', dest='specificf', type=str, nargs='+', help='Path of folder or file to upload to a specific folder.', metavar='Path(s)')
-	parse.add_argument('-c, --createf', dest='createf', help='Creates a folder.', action='store_true')
-	parse.add_argument('-r, --remove', dest='remove', help='Remove access to Drive.', action='store_true')
+	parse.add_argument('-cr, --createf', dest='createf', help='Creates a folder.', action='store_true')
+	parse.add_argument('-re, --remove', dest='remove', help='Remove access to Drive.', action='store_true')
 	parse.add_argument('-l, --list', dest='list', help='List Drive files and folders.', action='store_true')
 	parse.add_argument('-d, --delete', dest='delete', help='Delete selected file or folder.', action='store_true')
 	parse.add_argument('-g, --get', dest='get', help='Download file or folder. Optionally, you can specify a path to downlaod there.', type=str, nargs='?', const='', metavar='Path')
 	parse.add_argument('-m, --move', dest='move', help='Move file or folder.', action='store_true')
+	parse.add_argument('-cb, --clean', dest='clean', help='Clean bin.', action='store_true')
+	parse.add_argument('-co, --copy', dest='copy', help='Copy a file.', action='store_true')
+	parse.add_argument('-se, --search', dest='search', help='Search by name.', action='store_true')
+	parse.add_argument('-aS, --addS', dest='star', help='Star a file.', action='store_true')
+	parse.add_argument('-rS, --removeS', dest='rstar', help='Remove star from an starred file.', action='store_true')
+	parse.add_argument('-sL, --shareLink', dest='link', help='Enable share linking and get the share link.', action='store_true')
 
 
 	args = parse.parse_args()
@@ -55,10 +62,22 @@ if __name__ == '__main__':
 					drive.Upload(path.decode(codec))
 			elif args.list:
 				drive.List()
+			elif args.clean:
+				clean_bin.clean()
 			elif args.delete:
 				drive.Delete()
+			elif args.copy:
+				drive.Copy()
+			elif args.star:
+				drive.AddStar()
+			elif args.rstar:
+				drive.RemoveStar()
+			elif args.link:
+				drive.getShareLink()
+			elif args.search:
+				drive.SearchByName()
 			elif args.get == '':
-				drive.Download(path=None)
+				drive.Download()
 			elif args.get:
 				drive.Download(path=args.get.decode(codec))
 			elif args.move:

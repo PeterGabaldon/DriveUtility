@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+#! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
 #
@@ -43,9 +43,15 @@ class Drive(mainDrive):
 			-True if successful
 			-False if it fails
 	"""	
-	def Move(self):
+	def Move(self, moveId=None, moveToId=None):
+		self.moveId = moveId
+		self.moveToId = moveToId
+
 		print 'Select wich file/folder move: '
-		moveId = super(Drive, self).List(SelectId=True)
+
+		if not self.moveId:
+			moveId = super(Drive, self).List(SelectId=True)
+
 		response = self.drive.files().get(fileId=moveId, fields='parents').execute()
 		parents = ",".join(response.get('parents'))
 		moveRoot = raw_input('Do you want to move it to My Drive? (Y/N): ')
@@ -63,7 +69,9 @@ class Drive(mainDrive):
 					raise
 		else:
 			print 'Select where to move: '
-			moveTo = super(Drive, self).List(SelectId=True, OnlyFolder=True)
+
+			if not self.moveToId:
+				moveTo = super(Drive, self).List(SelectId=True, OnlyFolder=True)
 			try:
 				response = self.drive.files().update(fileId=moveId, removeParents=parents, addParents=moveTo).execute()
 				'Moved!'
@@ -81,10 +89,15 @@ class Drive(mainDrive):
 			-True if successful
 			-False if it fails
 	"""
-	def AddStar(self):
+	def AddStar(self, Id=None):
+		self.Id = Id
+
 		metadata = {'starred' : 'true'}
 		print 'Selec file/folder to add star: '
-		starId = super(Drive, self).List(SelectId=True)
+
+		if not self.Id:
+			starId = super(Drive, self).List(SelectId=True)
+			
 		if starId:
 			try:
 				response = self.drive.files().update(fileId=starId, body=metadata).execute()
@@ -150,6 +163,34 @@ class Drive(mainDrive):
 		except ValueError:
 			print 'Error. Enter valid number'
 			self.RemoveStar()
+
+	"""
+		This method will get the share link, enabling link sharing of the selected folder/file
+		Return:
+			-Link
+			-False if it fails
+	"""				
+	def getShareLink(self, Id=None):
+		self.Id = Id
+		permission = {'role' : 'reader', 'type' : 'anyone', 'allowFileDiscovery' : 'false'}
+
+		if not self.Id:
+			self.Id = super(Drive, self).List(SelectId=True)
+
+		try:	
+			response = self.drive.permissions().create(fileId=self.Id, body=permission).execute();
+			link = self.drive.files().get(fileId=self.Id, fields='webViewLink').execute().get('webViewLink')
+			print link
+			return link
+		except HttpError as err:
+			if err.resp.status == 403:
+				print 'You are not allowed to move it'
+				return False
+			else:
+				raise
+
+
+
 
 
 

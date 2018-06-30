@@ -1,0 +1,21 @@
+ChangeLog
+=========
+All notable changes to this project will be documented in this file.
+
+1.0.3 · 29-6-2018
+=================
+Fixed:
+	-Fixed error when adding DriveUtil to the windows Context Menu
+
+1.0.4 · 30-6-2018
+=================
+-Added:
+	-New method to enable share linking and get that link.
+	-Added new options to the Windows Context Menu.
+	-Added new options to the command line utility.
+	-Id parameters to Move() and AddStar() methods.
+-Changed:
+	-Download method now detect when trying to download a non-binary file(these cannot be downloaded) and get the link to view it via the browser.
+	-clean_bin.py now is not an external script, it can be use from command line.
+
+

@@ -26,13 +26,19 @@ Available options are:
                         Path of folder or file to upload.
   -s, --specificf Path(s) [Path(s) ...]
                         Path of folder or file to upload to a specific folder.
-  -c, --createf         Creates a folder.
-  -r, --remove          Remove access to Drive.
+  -cr, --createf        Creates a folder.
+  -re, --remove         Remove access to Drive.
   -l, --list            List Drive files and folders.
   -d, --delete          Delete selected file or folder.
   -g, --get [Path]      Download file or folder. Optionally, you can specify a
                         path to downlaod there.
   -m, --move            Move file or folder.
+  -cb, --clean          Clean bin.
+  -co, --copy           Copy a file.
+  -se, --search         Search by name.
+  -aS, --addS           Star a file.
+  -rS, --removeS        Remove star from an starred file.
+  -sL, --shareLink      Enable share linking and get the share link.
 ```
 ## Implementing it
 Module `main.py` holds two functions, `Auth()` and `DeleteCred()` and the `main`class. The first one return the Drive API object after a successfully Oauth autentication, and the second remove the Oauth stored token. The `drive.py` module import `main.py` and imlements the `Drive` class wich inherits from `main` class. Botch classes instantiation need the Drive API object parameter.
