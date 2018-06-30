@@ -1,6 +1,6 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-#Pedro Gabaldon
+# Pedro Gabaldon
 
 from _winreg import *
 import os
