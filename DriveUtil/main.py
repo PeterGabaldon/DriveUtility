@@ -50,7 +50,6 @@ DriveFolderMime = 'application/vnd.google-apps.folder'
 
 #Return drive api object
 def Auth():
-	print __file__
 	home_dir = os.path.expanduser('~')
 	credential_dir = os.path.join(home_dir, '.Drive-credentials')
 	if not os.path.exists(credential_dir):
