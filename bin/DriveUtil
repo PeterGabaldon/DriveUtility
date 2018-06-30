@@ -14,7 +14,7 @@ if __name__ == '__main__':
 	try:
 		import argparse
 		import platform
-		import banner
+		from DriveUtil.banner import *
 		from DriveUtil.drive import *
 	except ImportError:
 		raise ImportError('Error importing')
@@ -37,7 +37,7 @@ if __name__ == '__main__':
 
 	args = parse.parse_args()
 
-	print banner.banner
+	print banner
 
 	if args.remove:
 		DeleteCred()
