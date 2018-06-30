@@ -16,9 +16,9 @@ import platform
 requires=["oauth2client", "httplib2", "google-api-python-client"]
 
 if platform.system() == "Windows":
-	SCRIPTS = ['bin/DriveUtil.bat', 'bin/DriveUtil']
+	scripts = ['bin/DriveUtil.bat', 'bin/DriveUtil']
 else:
-	SCRIPTS = ['bin/DriveUtil']
+	scripts = ['bin/DriveUtil']
 	
 	
 
