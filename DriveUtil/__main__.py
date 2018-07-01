@@ -31,7 +31,7 @@ if __name__ == '__main__':
 	parse.add_argument('-cr, --createf', dest='createf', help='Creates a folder.', action='store_true')
 	parse.add_argument('-re, --remove', dest='remove', help='Remove access to Drive.', action='store_true')
 	parse.add_argument('-l, --list', dest='list', help='List Drive files and folders.', action='store_true')
-	parse.add_argument('-d, --delete', dest='delete', help='Delete selected file or folder.', action='store_true')
+	parse.add_argument('-de, --delete', dest='delete', help='Delete selected file or folder.', action='store_true')
 	parse.add_argument('-g, --get', dest='get', help='Download file or folder. Optionally, you can specify a path to downlaod there.', type=str, nargs='?', const='', metavar='Path')
 	parse.add_argument('-m, --move', dest='move', help='Move file or folder.', action='store_true')
 	parse.add_argument('-cb, --clean', dest='clean', help='Clean bin.', action='store_true')
@@ -40,7 +40,8 @@ if __name__ == '__main__':
 	parse.add_argument('-aS, --addS', dest='star', help='Star a file.', action='store_true')
 	parse.add_argument('-rS, --removeS', dest='rstar', help='Remove star from an starred file.', action='store_true')
 	parse.add_argument('-sL, --shareLink', dest='link', help='Enable share linking and get the share link.', action='store_true')
-
+	parse.add_argument('-dS, --disableShare', dest='disableLink', help='Disable link sharing.', action='store_true')
+	parse.add_argument('-rn, --rename', dest='rename', help='Rename item.', action='store_true')
 
 	args = parse.parse_args()
 
@@ -73,7 +74,11 @@ if __name__ == '__main__':
 			elif args.rstar:
 				drive.RemoveStar()
 			elif args.link:
-				drive.getShareLink()
+				drive.GetShareLink()
+			elif args.disableLink:
+				drive.DisableSharing()
+			elif args.rename:
+				drive.Rename()	
 			elif args.search:
 				drive.SearchByName()
 			elif args.get == '':

@@ -29,7 +29,7 @@ Available options are:
   -cr, --createf        Creates a folder.
   -re, --remove         Remove access to Drive.
   -l, --list            List Drive files and folders.
-  -d, --delete          Delete selected file or folder.
+  -de, --delete         Delete selected file or folder.
   -g, --get [Path]      Download file or folder. Optionally, you can specify a
                         path to downlaod there.
   -m, --move            Move file or folder.
@@ -39,6 +39,8 @@ Available options are:
   -aS, --addS           Star a file.
   -rS, --removeS        Remove star from an starred file.
   -sL, --shareLink      Enable share linking and get the share link.
+  -dS, --disableShare   Disable link sharing.
+  -rn, --rename         Rename item.
 ```
 ## Implementing it
 Module `main.py` holds two functions, `Auth()` and `DeleteCred()` and the `main`class. The first one return the Drive API object after a successfully Oauth autentication, and the second remove the Oauth stored token. The `drive.py` module import `main.py` and imlements the `Drive` class wich inherits from `main` class. Botch classes instantiation need the Drive API object parameter.
@@ -58,7 +60,11 @@ List |FolderId=None|OnlyFolder=False|SelectId=False|query=None |Folder/file Id i
 Move|moveId|moveToId|||True if successful. False if it fails
 AddStar|Id||||True if successful. False if it fails
 RemoveStar|||||True if successful. False if it fails
-getShareLink|||||Share link. False if it fails
+GetShareLink|||||Share link. False if it fails
+DisableSharing|Id=None||||True if successful. False if it fails
+Rename|Id=None|newName=None|||True if successful. False if it fails
+
+
 
 # Windows Context Menu
 ## Adding it

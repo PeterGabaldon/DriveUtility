@@ -18,4 +18,11 @@ Fixed:
 	-Download method now detect when trying to download a non-binary file(these cannot be downloaded) and get the link to view it via the browser.
 	-clean_bin.py now is not an external script, it can be use from command line.
 
+1.0.5 · 1-7-2018
+================
+-Added:
+	-Rename method
+	-Disable link sharing in the selected item
+
+
 

@@ -255,7 +255,7 @@ class mainDrive(object):
 			-Id of the newly created folder
 	"""	
 	def CreateFolder(self):
-		name = str(raw_input('Enter folder name: '))
+		name = raw_input('Enter folder name: ')
 
 		metadata = {'name' : name, 'mimeType' : DriveFolderMime}
 		response = self.drive.files().create(body=metadata, fields='id').execute()
@@ -379,7 +379,7 @@ class mainDrive(object):
 
 	"""
 	def SearchByName(self):
-		name = str(raw_input('Enter name to search: '))
+		name = raw_input('Enter name to search: ')
 		query = 'name contains ' + '\'' + name + '\''
  		self.List(query=query)
  		return
