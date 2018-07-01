@@ -14,8 +14,8 @@ if __name__ == '__main__':
 	try:
 		import argparse
 		import platform
-		import DriveUtil.banner
-		import DriveUtil.clean_bin
+		from DriveUtil import banner
+		from DriveUtil import clean_bin
 		from DriveUtil.drive import *
 	except ImportError:
 		raise ImportError('Error importing')
