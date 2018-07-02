@@ -33,6 +33,7 @@ try:
 
 	import io
 	import os
+	import platform
 	import httplib2
 
 	from oauth2client import client
@@ -93,6 +94,10 @@ class mainDrive(object):
 
 	def __init__(self, drive):
 		self.drive = drive
+		if platform.system() == "Windows":
+			self.codec = 'windows-1252'	
+		else:
+			self.codec = 'utf-8'	
 
 	"""
 		Upload method
@@ -278,8 +283,8 @@ class mainDrive(object):
 		if self.Path:
 			if self.Path[-1:] != '\\':
 				self.Path += '\\'
-			os.chdir(str(self.Path))	
-
+			os.chdir(str(self.Path).encode(self.codec))
+						
 		self.Id = Id
 		if not Id:
 			print 'Select wich folder/file download: '
@@ -298,8 +303,8 @@ class mainDrive(object):
 			return False
 
 		if mime.get('mimeType') == DriveFolderMime:
-			os.makedirs(mime.get('name'))
-			os.chdir(str(mime.get('name')))
+			os.makedirs(mime.get('name').encode(self.codec))
+			os.chdir(mime.get('name').encode(self.codec))
 
 			query = 'parents in ' + '\'' + self.Id + '\''
 			response = self.drive.files().list(q=query, fields='files(id)', orderBy='folder desc').execute()
@@ -309,7 +314,7 @@ class mainDrive(object):
 			for x in range(len(files_id)):
 				cwd = os.getcwd()
 				self.Download(Id=files_id[x].get('id'))
-				os.chdir(cwd)								
+				os.chdir(cwd.decode(self.codec))								
 			return True			
 
 		else:
@@ -333,7 +338,7 @@ class mainDrive(object):
 					if status:
 						print 'Downloaded %d%%.' % int(status.progress() * 100)
 		
-			with open(mime.get('name'), 'wb') as f:
+			with open(mime.get('name').encode(self.codec), 'wb') as f:
 				f.write(file.getvalue())
 
 			print 'File downloaded'
@@ -406,6 +411,8 @@ class mainDrive(object):
 				metadata = {'trashed' : 'true'}
 				try:
 					request = self.drive.files().update(fileId=self.Id, body=metadata, fields='id').execute()
+					print 'Deleted'
+					return True
 				except HttpError as err:
 					if err.resp.status == 403:
 						print 'You are not allowed to delete it'
@@ -415,6 +422,8 @@ class mainDrive(object):
 			elif trash in ['P', 'p']:
 				try:
 					request = self.drive.files().delete(fileId=self.Id).execute()
+					print 'Deleted'
+					return True
 				except HttpError as err:
 					if err.resp.status == 403:
 						print 'You are not allowed to delete it'
