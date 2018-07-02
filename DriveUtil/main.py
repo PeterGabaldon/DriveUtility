@@ -329,17 +329,18 @@ class mainDrive(object):
 						status, response = downloader.next_chunk()
 					except HttpError as err:
 						if err.resp.status == 403:
-							print 'You do not have permissions'
 							if err._get_reason() == 'Only files with binary content can be downloaded. Use Export with Google Docs files.':
-								print 'That file can not be download. View it in: ' + str(self.drive.files().get(fileId=self.Id, fields='webViewLink').execute().get('webViewLink'))
+								print 'That file can not be download. View it in: ' + self.drive.files().get(fileId=self.Id, fields='webViewLink').execute().get('webViewLink')
 								return True
-							return False
+							else:
+								print 'You do not have permissions'	
+								return False
 						else:
 							raise
 					if status:
 						print 'Downloaded %d%%.' % int(status.progress() * 100)
 		
-			with open(mime.get('name').encode(self.codec), 'wb') as f:
+			with open(mime.get('name'), 'wb') as f:
 				f.write(file.getvalue())
 
 			print 'File downloaded'
