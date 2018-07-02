@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 1.0.3 · 29-6-2018
 =================
 Fixed:
-	-Fixed error when adding DriveUtil to the windows Context Menu
+	-Fixed error when adding DriveUtil to the windows Context Menu.
 
 1.0.4 · 30-6-2018
 =================
@@ -21,14 +21,19 @@ Fixed:
 1.0.5 · 1-7-2018
 ================
 -Added:
-	-Rename method
-	-Disable link sharing in the selected item
+	-Rename method.
+	-Disable link sharing in the selected item.
 
 1.0.6 · 2-7-2018
 ================
 -Fixed:
-	-Rename method used to delete file extensions, now it is corrected
+	-Rename method used to delete file extensions, now it is corrected.
 	-List method when used with OnlyFolder=True did not show only folders, now it shows only folders.
+
+1.0.7 · 3-7-2018
+================
+-Fixed:
+	-Download method failed with non-ascii item's name.
 
 
 
