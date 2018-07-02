@@ -276,7 +276,10 @@ class Drive(mainDrive):
 		if not self.name:
 			self.name = raw_input('New name: ')
 
-		metadata = {'name' : self.name}
+		oldName = self.drive.files().get(fileId=self.Id, fields='name').execute().get('name')
+		oldName, ext = os.path.splitext(oldName)
+		print oldName + ext + ' --> ' + self.name + ext	
+		metadata = {'name' : self.name + ext}
 		try:
 			response = 	self.drive.files().update(fileId=self.Id, body=metadata).execute()
 			print 'Renamed'
