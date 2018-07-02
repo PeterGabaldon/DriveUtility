@@ -284,7 +284,7 @@ class mainDrive(object):
 		if self.Path:
 			if self.Path[-1:] != '\\':
 				self.Path += '\\'
-			os.chdir(str(self.Path).encode(self.codec))
+			os.chdir(str(self.Path).decode(self.codec))
 						
 		self.Id = Id
 		if not Id:
