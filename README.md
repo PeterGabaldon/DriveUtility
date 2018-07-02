@@ -80,7 +80,7 @@ from an elevetad Windows command prompt.
 
 ![Context Menu](https://media.giphy.com/media/4K1N65N9Wmx6WrdQ4f/giphy.gif)
 
-## Examples
+# Examples
 `example.py` is a sample script. It will upload the contents of Test folder.
 
 # Contributing
