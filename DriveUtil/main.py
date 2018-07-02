@@ -443,7 +443,7 @@ class mainDrive(object):
 		if self.FolderId:
 			query = 'parents in ' + '\'' + self.FolderId + '\''
 		elif OnlyFolder:
-			query = 'parents in \'root\' or sharedWithMe and mimeType = \'application/vnd.google-apps.folder\''
+			query = '(parents in \'root\' or sharedWithMe) and (mimeType = \'application/vnd.google-apps.folder\')'
 		elif OnlyFolder and self.FolderId:
 			query = 'parents in ' + '\'' + self.FolderId + '\' and mimeType = \'application/vnd.google-apps.folder\''				
 		elif query:
@@ -502,9 +502,9 @@ class mainDrive(object):
 					raise ValueError('Enter valid number')
 
 			else:
-				return None
+				return
 
 		else:
 			print 'That was not a folder or folders/files were not found'
-			return False
+			return
 			
