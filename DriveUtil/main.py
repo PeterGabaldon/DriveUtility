@@ -94,6 +94,7 @@ class mainDrive(object):
 
 	def __init__(self, drive):
 		self.drive = drive
+		
 		if platform.system() == "Windows":
 			self.codec = 'windows-1252'	
 		else:
