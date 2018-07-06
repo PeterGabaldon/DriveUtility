@@ -35,5 +35,10 @@ Fixed:
 -Fixed:
 	-Download method failed with non-ascii item's name.
 
+1.1.1 · 4-7-2018
+================
+-Fixed:
+	-An error with the coding when supplying the keyword path parameter in Download method.
+
 
 

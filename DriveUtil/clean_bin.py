@@ -13,12 +13,12 @@
 from main import *
 
 def clean():
-	cred = Auth()
+    cred = Auth()
 
-	response = cred.files().emptyTrash().execute()
+    response = cred.files().emptyTrash().execute()
 
-	print 'Cleaned'
-	print 'Byeee!'
+    print 'Cleaned'
+    print 'Byeee!'
 
 if __name__ == '__main__':
-	clean()	
+    clean()    

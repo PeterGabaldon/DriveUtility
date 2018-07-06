@@ -2,5 +2,5 @@
 
 title DriveUtil
 cd "%~dp0..\..\"
-python DriveUtil -c
+python DriveUtil -cf
 pause
