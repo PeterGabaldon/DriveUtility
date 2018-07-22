@@ -11,14 +11,14 @@
 #
 
 """
-tools.py - Contain other Google Drive operations
+drive.py - Contain other Google Drive operations
 
 Example:
     
-    import tools
+    import drive
     
-    cred = tools.Auth()
-    drive = tools.Drive(cred)
+    cred = drive.Auth()
+    drive = drive.Drive(cred)
 
     drive.Move()
     drive.AddStar("example.txt")
