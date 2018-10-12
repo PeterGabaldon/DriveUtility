@@ -78,7 +78,7 @@ python -m DriveUtility.removeContext
 ```
 from an elevetad Windows command prompt.
 
-![Context Menu](https://media.giphy.com/media/9AIofUHAdwEn2g8jII/giphy.gif)
+![Context Menu](https://i.imgur.com/DKaWEFH.gif)
 
 # Examples
 `example.py` is a sample script. It will upload the contents of Test folder.
