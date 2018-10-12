@@ -16,13 +16,14 @@ from DriveUtility import banner
 from DriveUtility import clean_bin
 from DriveUtility.drive import *
 
+parse = argparse.ArgumentParser(description='Google Drive Utility')
+
 def main():
     if platform.system() == "Windows":
         codec = 'windows-1252'    
     else:
         codec = 'utf-8'
 		
-	parse = argparse.ArgumentParser(description='Google Drive Utility')    
     parse.add_argument('-u, --upload', dest='upload', type=str, nargs='+', help='Path of folder or file to upload.', metavar='Path(s)')
     parse.add_argument('-sf, --specificf', dest='specificf', type=str, nargs='+', help='Path of folder or file to upload to a specific folder.', metavar='Path(s)')
     parse.add_argument('-cf, --createf', dest='createf', help='Creates a folder.', action='store_true')
