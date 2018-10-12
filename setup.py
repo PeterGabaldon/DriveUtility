@@ -15,27 +15,22 @@ import platform
 
 requires=["oauth2client", "httplib2", "google-api-python-client"]
 
-if platform.system() == "Windows"	:
-	package = setuptools.find_packages()
-else:
-	package = setuptools.find_packages(exclude=["DriveUtil/addContext.py", "DriveUtil/removeContext.py"])
-
 with open("README.md", "r") as f:
     long_description = f.read()
 
 setuptools.setup(
 	name="DriveUtility",
-	version="1.1.7",
+	version="1.1.10",
 	author="Pedro Gabaldon Julia",
 	author_email="petergj@protonmail.com",
 	description="Google Drive tool",
 	long_description=long_description,
     long_description_content_type="text/markdown",
 	url="https://github.com/PeterGabaldon/DriveUtility",
-	entry_points ={'console_scripts' : ['DriveUtil = DriveUtil.DriveUtil:main']},
+	entry_points ={'console_scripts' : ['DriveUtil = DriveUtil.bin.DriveUtil:main']},
 	license="MIT",
 	install_requires=requires,
-	packages=package,
+	packages=setuptools.find_packages(),
 	include_package_data=True,
 	classifiers=(
 		"Programming Language :: Python :: 2.7",
