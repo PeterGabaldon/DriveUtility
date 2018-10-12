@@ -10,22 +10,19 @@
 #
 #
 
-if __name__ == '__main__':
-    try:
-        import argparse
-        import platform
-        from DriveUtil import banner
-        from DriveUtil import clean_bin
-        from DriveUtil.drive import *
-    except ImportError:
-        raise ImportError('Error importing')
+import argparse
+import platform
+from DriveUtil import banner
+from DriveUtil import clean_bin
+from DriveUtil.drive import *
 
+def main():
     if platform.system() == "Windows":
         codec = 'windows-1252'    
     else:
         codec = 'utf-8'
-
-    parse = argparse.ArgumentParser(description='Google Drive Utility')    
+		
+	parse = argparse.ArgumentParser(description='Google Drive Utility')    
     parse.add_argument('-u, --upload', dest='upload', type=str, nargs='+', help='Path of folder or file to upload.', metavar='Path(s)')
     parse.add_argument('-sf, --specificf', dest='specificf', type=str, nargs='+', help='Path of folder or file to upload to a specific folder.', metavar='Path(s)')
     parse.add_argument('-cf, --createf', dest='createf', help='Creates a folder.', action='store_true')
@@ -92,3 +89,4 @@ if __name__ == '__main__':
 
         else:
             print 'Please make sure you have allowed the app to acces your Drive'
+			
