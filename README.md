@@ -6,7 +6,7 @@ Google Drive Utility provides an easy way to use Google Drive from command line,
 ## Download and installation
 You can download it with Pip:
 ```
-pip install DriveUtility
+pip install DriveUtilityity
 ```
 
 # Usage
@@ -17,7 +17,7 @@ DriveUtil [Args]
 ```
 or:
 ```
-python -m DriveUtil [Args]
+python -m DriveUtility [Args]
 ```
 Available options are:
 ```
@@ -68,17 +68,17 @@ Rename|Id=None|newName=None|||True if successful. False if it fails
 
 # Windows Context Menu
 ## Adding it
-The provided python scripts, `addContext.py` and `removeContext.py` add new options to the Context Menu, making DriveUtil more flexible to use. These two scripts must be run with admin rights. You can use:
+The provided python scripts, `addContext.py` and `removeContext.py` add new options to the Context Menu, making DriveUtility more flexible to use. These two scripts must be run with admin rights. You can use:
 ```
-python -m DriveUtil.addContext
+python -m DriveUtility.addContext
 ```
 and
 ```
-python -m DriveUtil.removeContext
+python -m DriveUtility.removeContext
 ```
 from an elevetad Windows command prompt.
 
-![Context Menu](https://media.giphy.com/media/4K1N65N9Wmx6WrdQ4f/giphy.gif)
+![Context Menu](https://media.giphy.com/media/9AIofUHAdwEn2g8jII/giphy.gif)
 
 # Examples
 `example.py` is a sample script. It will upload the contents of Test folder.
