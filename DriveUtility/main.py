@@ -321,7 +321,8 @@ class mainDrive(object):
             for x in range(len(files_id)):
                 cwd = os.getcwd()
                 self.Download(Id=files_id[x].get('id'))
-                os.chdir(cwd.decode(self.codec))                                
+                os.chdir(cwd.decode(self.codec))
+            print 'Folder downloaded'	
             return True            
 
         else:
