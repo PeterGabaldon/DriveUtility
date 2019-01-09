@@ -42,29 +42,6 @@ Available options are:
   -dS, --disableShare   Disable link sharing.
   -rn, --rename         Rename item.
 ```
-## Implementing it
-Module `main.py` holds two functions, `Auth()` and `DeleteCred()` and the `main`class. The first one return the Drive API object after a successfully Oauth autentication, and the second remove the Oauth stored token. The `drive.py` module import `main.py` and imlements the `Drive` class wich inherits from `main` class. Botch classes instantiation need the Drive API object parameter.
-
-Methods:
-
-Method |Param 1|Param 2|Param 3|Param 4|Return              
--------|-------|-------|-------|-------|------
-Upload |path|FolderId=None|||True if successful. False if not
-UploadSpecificFolder|path|Id=None|||True if successful. False if not
-CreateFolder|||||Id of the newly created folder
-Download|path=None|Id=None|||True if successful. False if it fails
-Copy|Id=None||||True if successful. False if it fails
-SearchByName|||||           
-Delete|Id=None||||True if successful. False if it fails
-List |FolderId=None|OnlyFolder=False|SelectId=False|query=None |Folder/file Id if SelectId=True. None otherwise
-Move|moveId|moveToId|||True if successful. False if it fails
-AddStar|Id||||True if successful. False if it fails
-RemoveStar|||||True if successful. False if it fails
-GetShareLink|||||Share link. False if it fails
-DisableSharing|Id=None||||True if successful. False if it fails
-Rename|Id=None|newName=None|||True if successful. False if it fails
-
-
 
 # Windows Context Menu
 ## Adding it

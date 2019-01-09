@@ -45,5 +45,7 @@ v1.1.6 · 12-10-2018
 -Fixed:
 	-Upload did not work properly in Linux systems because I am stu**d and used backslashes.
 
-
-
+v1.1.18 · 9-1-2019
+==================
+-Changed:
+	-Now, instead of file's ID, type (Folder or file) is printed when listing items.

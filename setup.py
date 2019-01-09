@@ -20,7 +20,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
 	name="DriveUtility",
-	version="1.1.17",
+	version="1.1.18",
 	author="Pedro Gabaldon Julia",
 	author_email="petergj@protonmail.com",
 	description="Google Drive tool",

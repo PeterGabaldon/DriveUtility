@@ -128,10 +128,10 @@ class mainDrive(object):
 
             if self.FolderId:
                 metadata = {'name' : filename, 'parents' : [self.FolderId]}
-                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType != \'application/vnd.google-apps.folder\' and parents in ' + '\'' + self.FolderId + '\''
+                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType != \'' + DriveFolderMime + '\' and parents in ' + '\'' + self.FolderId + '\''
             else:
                 metadata = {'name' : filename}
-                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType != \'application/vnd.google-apps.folder\''
+                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType != \'' + DriveFolderMime + '\''
 
             media = MediaFileUpload(self.FILE_PATH, resumable=True, chunksize=1048576)
             response = self.drive.files().list(q=query, fields='files(id, name)').execute()
@@ -180,10 +180,10 @@ class mainDrive(object):
         elif os.path.isdir(self.FILE_PATH):
             if self.FolderId:
                 metadata = {'name' : filename, 'mimeType' : DriveFolderMime, 'parents' : [self.FolderId] }
-                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType = \'application/vnd.google-apps.folder\' and parents in ' + '\'' + self.FolderId + '\''
+                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType = \'' + DriveFolderMime + '\' and parents in ' + '\'' + self.FolderId + '\''
             else:
                 metadata = {'name' : filename, 'mimeType' : DriveFolderMime }
-                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType = \'application/vnd.google-apps.folder\' and parents in \'root\''
+                query = 'name = ' + '\'' + filename + '\' and trashed=false and mimeType = \'' + DriveFolderMime + '\' and parents in \'root\''
 
             response = self.drive.files().list(q=query, fields='files(id, name)').execute()
             folder = response.get('files')
@@ -322,7 +322,7 @@ class mainDrive(object):
                 cwd = os.getcwd()
                 self.Download(Id=files_id[x].get('id'))
                 os.chdir(cwd.decode(self.codec))
-            print 'Folder downloaded'	
+            print 'Folder downloaded'
             return True            
 
         else:
@@ -461,15 +461,15 @@ class mainDrive(object):
         if self.FolderId:
             query = 'parents in ' + '\'' + self.FolderId + '\''
         elif OnlyFolder:
-            query = '(parents in \'root\' or sharedWithMe) and (mimeType = \'application/vnd.google-apps.folder\')'
+            query = '(parents in \'root\' or sharedWithMe) and (mimeType = \'' + DriveFolderMime + '\')'
         elif OnlyFolder and self.FolderId:
-            query = 'parents in ' + '\'' + self.FolderId + '\' and mimeType = \'application/vnd.google-apps.folder\''                
+            query = 'parents in ' + '\'' + self.FolderId + '\' and mimeType = \'' + DriveFolderMime + '\''
         elif query:
             query = query    
         else:
             query = 'parents in \'root\' or sharedWithMe'
 
-        response = self.drive.files().list(q=query, fields='files(id, name, trashed)').execute()
+        response = self.drive.files().list(q=query, fields='files(id, name, trashed, mimeType)').execute()
         found = response.get('files')
 
         if found:
@@ -477,9 +477,9 @@ class mainDrive(object):
                 if found[x].get('trashed'):
                     continue
                 try:
-                    print str(x) + '. ' + found[x].get('name') + ' (' + found[x].get('id') + ')'
+                    print str(x) + '. ' + found[x].get('name') + ' (%s)' %('Folder' if (found[x].get('mimeType') == DriveFolderMime) else 'File')
                 except UnicodeEncodeError:
-                    print str(x) + '. ' + '[Unknown name]' + ' (' + found[x].get('id') + ')'
+                    print str(x) + '. ' + '[Unknown name]. ID: ' + found[x].get('id')
         
             children = raw_input('Do you want to search in? (Y/N): ')
 
@@ -501,7 +501,7 @@ class mainDrive(object):
 
                 except ValueError:
                     print 'Error'
-                    raise ValueError('Enter valid number')                    
+                    print 'Enter valid number'
 
 
             elif SelectId:
